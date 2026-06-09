@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcademiX Pro - Settings & Data Management</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🎓</span>
+                <span class="logo-text">AcademiX Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">← Back to Home</a></li>
+                <li><a href="#" class="nav-link active">Settings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="settings-container">
+        <h1>⚙️ Settings & Preferences</h1>
+
+        <!-- Profile Settings -->
+        <section class="settings-section">
+            <h2>👤 Profile Settings</h2>
+            <div class="setting-item">
+                <label>Display Name</label>
+                <input type="text" id="displayName" placeholder="Enter your name" class="input-field">
+                <button onclick="saveSetting('displayName')" class="btn-primary">Save</button>
+            </div>
+            <div class="setting-item">
+                <label>Email Address</label>
+                <input type="email" id="emailAddress" placeholder="your@email.com" class="input-field">
+                <button onclick="saveSetting('emailAddress')" class="btn-primary">Save</button>
+            </div>
+        </section>
+
+        <!-- Theme Settings -->
+        <section class="settings-section">
+            <h2>🎨 Appearance</h2>
+            <div class="setting-item">
+                <label>Theme</label>
+                <div class="theme-options">
+                    <button onclick="setTheme('light')" class="theme-option light-theme">☀️ Light</button>
+                    <button onclick="setTheme('dark')" class="theme-option dark-theme">🌙 Dark</button>
+                    <button onclick="setTheme('auto')" class="theme-option auto-theme">🔄 Auto</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Font Size</label>
+                <input type="range" id="fontSize" min="14" max="20" value="16" oninput="changeFontSize()" class="slider">
+                <span id="fontSizeValue">16px</span>
+            </div>
+        </section>
+
+        <!-- Privacy Settings -->
+        <section class="settings-section">
+            <h2>🔐 Privacy & Security</h2>
+            <div class="setting-item">
+                <label>
+                    <input type="checkbox" id="analytics" checked>
+                    Allow Analytics Collection
+                </label>
+                <small>Help us improve by sharing usage data (all private)</small>
+            </div>
+            <div class="setting-item">
+                <label>
+                    <input type="checkbox" id="notifications" checked>
+                    Enable Notifications
+                </label>
+                <small>Receive learning reminders and updates</small>
+            </div>
+        </section>
+
+        <!-- Data Management -->
+        <section class="settings-section">
+            <h2>💾 Data Management</h2>
+            <div class="data-info">
+                <p>Local Storage Status: <span class="status-active">✓ Active</span></p>
+                <p id="storageSize">Storage Used: Calculating...</p>
+            </div>
+            <div class="button-group">
+                <button onclick="exportData()" class="btn-primary">📥 Export Data</button>
+                <button onclick="importData()" class="btn-primary" style="background: var(--secondary-color);">📤 Import Data</button>
+                <input type="file" id="importFile" accept=".json" style="display:none" onchange="handleImport()">
+                <button onclick="clearAllData()" class="btn-danger">🗑️ Clear All Data</button>
+            </div>
+        </section>
+
+        <!-- Learning Goals -->
+        <section class="settings-section">
+            <h2>🎯 Learning Goals</h2>
+            <div class="setting-item">
+                <label>Daily Learning Target (hours)</label>
+                <input type="number" id="dailyGoal" min="0.5" max="10" step="0.5" value="2" class="input-field">
+                <button onclick="setGoal()" class="btn-primary">Save Goal</button>
+            </div>
+            <div class="setting-item">
+                <label>Preferred Learning Time</label>
+                <select id="learningTime" class="input-field">
+                    <option value="morning">🌅 Morning (6-12 AM)</option>
+                    <option value="afternoon">🌤️ Afternoon (12-5 PM)</option>
+                    <option value="evening">🌆 Evening (5-9 PM)</option>
+                    <option value="night">🌙 Night (9+ PM)</option>
+                </select>
+                <button onclick="setLearningTime()" class="btn-primary">Save</button>
+            </div>
+        </section>
+
+        <!-- Notification Preferences -->
+        <section class="settings-section">
+            <h2>🔔 Notifications</h2>
+            <div class="setting-item">
+                <label>
+                    <input type="checkbox" id="notifCompletion" checked>
+                    Notify on Course Completion
+                </label>
+            </div>
+            <div class="setting-item">
+                <label>
+                    <input type="checkbox" id="notifReminders" checked>
+                    Daily Learning Reminders
+                </label>
+            </div>
+            <div class="setting-item">
+                <label>
+                    <input type="checkbox" id="notifNewResources" checked>
+                    New Resource Alerts
+                </label>
+            </div>
+            <button onclick="saveNotifications()" class="btn-primary">Save Preferences</button>
+        </section>
+
+        <!-- About Section -->
+        <section class="settings-section">
+            <h2>ℹ️ About AcademiX Pro</h2>
+            <div class="about-info">
+                <p><strong>Version:</strong> 1.0.0</p>
+                <p><strong>Last Updated:</strong> June 2024</p>
+                <p><strong>Total Resources:</strong> 6,000+</p>
+                <p><strong>Research Papers:</strong> 700+</p>
+                <p><strong>Subjects:</strong> 12 Disciplines</p>
+                <p><strong>Creator:</strong> Hadia Arshad</p>
+                <p><strong>License:</strong> MIT</p>
+            </div>
+            <div class="about-links">
+                <a href="#">📖 User Manual</a>
+                <a href="#">🐙 GitHub Repository</a>
+                <a href="#">📧 Contact Support</a>
+            </div>
+        </section>
+    </div>
+
+    <style>
+        .settings-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .settings-container h1 {
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+        }
+
+        .settings-section {
+            background: var(--surface);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .settings-section h2 {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+        }
+
+        .setting-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .setting-item label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .input-field,
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--background);
+            color: var(--text-primary);
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+        }
+
+        .theme-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .theme-option {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--background);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .theme-option:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+            transform: scale(1.05);
+        }
+
+        .data-info {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .data-info p {
+            margin: 0.5rem 0;
+        }
+
+        .status-active {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .about-info {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .about-info p {
+            margin: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .about-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .about-links a {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .about-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .settings-container {
+                padding: 1rem;
+            }
+
+            .theme-options {
+                flex-direction: column;
+            }
+
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        // Load settings on page load
+        document.addEventListener('DOMContentLoaded', loadSettings);
+
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('academix_settings') || '{}');
+            document.getElementById('displayName').value = settings.displayName || '';
+            document.getElementById('emailAddress').value = settings.emailAddress || '';
+            document.getElementById('dailyGoal').value = settings.dailyGoal || '2';
+            document.getElementById('learningTime').value = settings.learningTime || 'morning';
+            document.getElementById('analytics').checked = settings.analytics !== false;
+            document.getElementById('notifications').checked = settings.notifications !== false;
+        }
+
+        function saveSetting(key) {
+            const settings = JSON.parse(localStorage.getItem('academix_settings') || '{}');
+            settings[key] = document.getElementById(key).value;
+            localStorage.setItem('academix_settings', JSON.stringify(settings));
+            alert('✓ Setting saved!');
+        }
+
+        function setTheme(theme) {
+            localStorage.setItem('theme', theme);
+            location.reload();
+        }
+
+        function changeFontSize() {
+            const size = document.getElementById('fontSize').value;
+            document.documentElement.style.fontSize = size + 'px';
+            document.getElementById('fontSizeValue').textContent = size + 'px';
+            localStorage.setItem('fontSize', size);
+        }
+
+        function setGoal() {
+            saveSetting('dailyGoal');
+        }
+
+        function setLearningTime() {
+            saveSetting('learningTime');
+        }
+
+        function saveNotifications() {
+            const settings = JSON.parse(localStorage.getItem('academix_settings') || '{}');
+            settings.notifCompletion = document.getElementById('notifCompletion').checked;
+            settings.notifReminders = document.getElementById('notifReminders').checked;
+            settings.notifNewResources = document.getElementById('notifNewResources').checked;
+            localStorage.setItem('academix_settings', JSON.stringify(settings));
+            alert('✓ Notifications updated!');
+        }
+
+        function exportData() {
+            const data = {
+                academix_pro_data: localStorage.getItem('academix_pro_data'),
+                academix_settings: localStorage.getItem('academix_settings'),
+                exportDate: new Date().toISOString()
+            };
+            const dataStr = JSON.stringify(data, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `academix_backup_${new Date().getTime()}.json`;
+            link.click();
+            alert('✓ Data exported successfully!');
+        }
+
+        function importData() {
+            document.getElementById('importFile').click();
+        }
+
+        function handleImport() {
+            const file = document.getElementById('importFile').files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.academix_pro_data) {
+                        localStorage.setItem('academix_pro_data', data.academix_pro_data);
+                    }
+                    if (data.academix_settings) {
+                        localStorage.setItem('academix_settings', data.academix_settings);
+                    }
+                    alert('✓ Data imported successfully!');
+                    location.reload();
+                } catch (error) {
+                    alert('✗ Error importing data: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function clearAllData() {
+            if (confirm('⚠️ Are you sure? This will delete ALL your data permanently!')) {
+                localStorage.removeItem('academix_pro_data');
+                localStorage.removeItem('academix_settings');
+                alert('✓ All data cleared!');
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
