@@ -385,7 +385,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - 📧 Email: hadiaarshad.pk@outlook.com
 - 🐙 GitHub: [@HadiaArshad00](https://github.com/HadiaArshad00)
-- 💼 LinkedIn: [Your LinkedIn]
 
 ---
 
